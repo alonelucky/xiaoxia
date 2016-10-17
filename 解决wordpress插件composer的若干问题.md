@@ -3,9 +3,9 @@
 composer是一个非常实用的可视化编辑器，在天朝总是因为各种问题，导致访问过慢等问题。
 ## 解决wordpress加载缓慢
 1. 首先，解决wordpress较慢问题，360替换google的插件貌似最近没有效果，而且出现了访问量过大须输入验证码继续访问，据说最近fonts.googleapis.com可以正常访问了，但是ajax.googleapis.com仍然无法访问。
-![useso最近访问不了](useso.png)
+![useso最近访问不了](img/useso.png)
 2. 所以最近使用的是QQ world-speed-for-china插件，直接在后台删除谷歌字体等。
-![QQ world-speed-for-china](qqworld.png)
+![QQ world-speed-for-china](img/qqworld.png)
 3. 这些问题解决后发现还有一个问题，就是打开文章页，加载composer时仍然十分缓慢，需要1-2min，打开开发者工具查看是一个谷歌的资源链接webfont1.4.7加载不了导致的，所以找到加载该资源链接的文件对其进行修改（本人用VPN将文件保存在本地了webfont.js）：
 		js_composer/include/classes/editors/class-vc-backend-editor.php
 在253行找到
