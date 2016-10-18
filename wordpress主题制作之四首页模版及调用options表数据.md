@@ -23,8 +23,8 @@
 
 3. 基础文件：
 
-		index.php --&gt; 主页模版
-		style.css --&gt; 主要样式表
+		index.php --> 主页模版
+		style.css --> 主要样式表
 		header.php
 		footer.php
 		slider.php
@@ -34,68 +34,68 @@
 		tag.php
 		single.php
 		page.php
-		screenshot.png --&gt; 主题缩略图
+		screenshot.png --> 主题缩略图
 
 ### 二、首页模版
 
 1. 	header.php
 
-			&lt;!doctype html&gt;
-			&lt;html&gt;
-			&lt;head&gt;
-			&lt;meta charset="&lt;? bloginfo('charset');?&gt;"&gt;
-			&lt;meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"&gt;
-			&lt;meta name="viewport" content="width=device-width,initial-scale=1.0"&gt;
-			&lt;link rel="stylesheet" href="&lt;? bloginfo('stylesheet_url');?&gt;"&gt;
-			&lt;title&gt;&lt;? bloginfo('name');?&gt; - &lt;? bloginfo('description');?&gt;&lt;/title&gt;
-			&lt;/head&gt;
+			<!doctype html>
+			<html>
+			<head>
+			<meta charset="<? bloginfo('charset');?>">
+			<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+			<meta name="viewport" content="width=device-width,initial-scale=1.0">
+			<link rel="stylesheet" href="<? bloginfo('stylesheet_url');?>">
+			<title><? bloginfo('name');?> - <? bloginfo('description');?></title>
+			</head>
 
 2. 	footer.php
 
-			&lt;/body&gt;
-			&lt;script src="&lt;?php bloginfo('stylesheet_directory'); ?&gt;/js/modernizr.js"&gt;&lt;/script&gt; 
-			&lt;script src="&lt;?php bloginfo('stylesheet_directory'); ?&gt;/js/main.js"&gt;&lt;/script&gt;
-			&lt;/html&gt;
+			</body>
+			<script src="<?php bloginfo('stylesheet_directory'); ?>/js/modernizr.js"></script> 
+			<script src="<?php bloginfo('stylesheet_directory'); ?>/js/main.js"></script>
+			</html>
 
 3. 	index.php
 
-			&lt;?php get_header();?&gt;
-			&lt;body&gt;
+			<?php get_header();?>
+			<body>
 
-			&lt;?php 
-			if (is_home()) {?&gt;
+			<?php 
+			if (is_home()) {?>
 				判断是否为主页，如果是则显示
-			&lt;?php	} 
-			?&gt;
+			<?php	} 
+			?>
 
-			&lt;?php 
+			<?php 
 				if( have_posts() ){               //判断是否有文章
 					while( have_posts() ){
 						the_post();				 //有文章输出
-			?&gt;
+			?>
 			
-			&lt;h3&gt;&lt;a href="&lt;? the_permalink(); ?&gt;"&gt;&lt;?php the_title();?&gt;&lt;/a&gt;&lt;/h3&gt; //输出文章标题，标题链接
-			&lt;span&gt;发布时间：&lt;?php the_time('Y-m-d'); ?&gt;作者：&lt;?php the_author();?&gt;&lt;/span&gt;
+			<h3><a href="<? the_permalink(); ?>"><?php the_title();?></a></h3> //输出文章标题，标题链接
+			<span>发布时间：<?php the_time('Y-m-d'); ?>作者：<?php the_author();?></span>
 			
-			&lt;p&gt;&lt;!--控制显示博客摘要   0 从头开始截取，300结束，以省略号结尾--&gt;
-			&lt;? echo mb_strimwidth(strip_tags(apply_filters('the_content', $post-&gt;post_content)), 0, 300,"......"); ?&gt;
-			&lt;/p&gt;
+			<p><!--控制显示博客摘要   0 从头开始截取，300结束，以省略号结尾-->
+			<? echo mb_strimwidth(strip_tags(apply_filters('the_content', $post->post_content)), 0, 300,"......"); ?>
+			</p>
 
-			&lt;span&gt;&lt;a href="&lt;?php the_permalink() ?&gt;"&gt;了解更多&lt;/a&gt;&lt;/span&gt;	
+			<span><a href="<?php the_permalink() ?>">了解更多</a></span>	
 
-			&lt;?php
+			<?php
 				}
 			}else{
 				echo "没有文章";					//没有文章输出
 			}
-			?&gt;
+			?>
 
-			&lt;ul&gt;
-				&lt;li&gt;&lt;?php previous_post_link('&lt;span&gt;上一篇：%link&lt;/span&gt;');?&gt;&lt;/li&gt;
-				&lt;li&gt;&lt;?php next_post_link('&lt;span&gt;下一篇：%link&lt;/span&gt;');?&gt;&lt;/li&gt;
-			&lt;/ul&gt;
+			<ul>
+				<li><?php previous_post_link('<span>上一篇：%link</span>');?></li>
+				<li><?php next_post_link('<span>下一篇：%link</span>');?></li>
+			</ul>
 
-			&lt;?php get_footer();?&gt;
+			<?php get_footer();?>
 
 ### 三、options表操作
 
@@ -103,10 +103,10 @@
 
 页面访问次数
 
-		&lt;?php echo $view;?&gt;					//输出数据	
-		&lt;?php
+		<?php echo $view;?>					//输出数据	
+		<?php
 			$view = get_option('view');			//定义、添加参数到数据表
 			update_option('view',$view+1);		//更新数据
-		?&gt;
+		?>
 
 学习模板基本函数，并且练习如何往数据表中添加参数和数据，并且调用输出。
