@@ -50,14 +50,21 @@
 
 
 4. 获取文章所属分类
+
     the_category();
+
 5. 获取文章作者
+
     the_author();
+
 6. 获取文章时间
+
     the_time();
     时间格式由参数决定；
     the_time('Y-M-D');
+
 7. 添加编辑链接
+
     edit_post_link();
 
 
