@@ -16,3 +16,14 @@
         本地版本:
         nodeV4.4.4
         npm v 2.15.1
+
+小码农博客，一个入门码农的学习记录平台，分享wordpress、joomla、laravel、web前端等资料和教程。
+
+
+小码农博客,小码农,小码农在线,萧逸雨,夏秋波,PHP学习,wordpress学习,larave学习l,web前端学习,交流学习
+
+
+http://www.weibo.com/xiaqiubo
+https://twitter.com/xiaqiubo123
+https://cn.linkedin.com/in/xiaqiubo
+https://github.com/xiaqiubo
