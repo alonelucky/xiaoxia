@@ -1,0 +1,16 @@
+##TemplateDetails文件
+
+
+
+1. 爱思 
+
+|模块 |含义|
+|--------|-------------|
+|position-1|菜单|
+|position-2|面包屑导航|
+|position-3|banner|
+|position-7|文章列表（只含标题）|
+|component|文章循环输出（全文）|
+|$doc = JFactory::getDocument(); ||
+|$this->baseurl|joomla安装路径|
+|$this->language||
