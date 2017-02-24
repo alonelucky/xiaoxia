@@ -31,6 +31,14 @@
         add_theme_support('post-thumbnails');
 
 2. 然后就可以在文章右下角添加特色图像
+
+        set_post_thumbnail_size( 155, 110, true ); // 设置默认的缩略图大小尺寸
+        add_image_size( 'one', 155, 110, true ); // 设置标记为”one”的缩略图尺寸，这里的one应该是数组下标
+        add_image_size( 'two', 350, 248, true );
+        add_image_size( 'big', 546, 387, true );
+
+        has_post_thumbnail()  //判断是否含有特色图像
+
 3. 调用特色图像
 
     1. 利用the_post_thumbnail($size,$attr);
