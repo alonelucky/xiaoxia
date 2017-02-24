@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="bs/bootstrap.min.css" />
+		
+		<title>日历学习,及表单获取</title>
+	</head>
+	<body>
+		<div>
+			<input type="text" name="years" id="years" value=""/>
+			<select name="mouths" id="mouths" onchange="selChange()">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+			</select>
+			<table class="table table-bordered table-hover table-striped">
+				<tr>
+					<td>星期日</td>
+					<td>星期一</td>
+					<td>星期二</td>
+					<td>星期三</td>
+					<td>星期四</td>
+					<td>星期五</td>
+					<td>星期六</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+	<script src="bs/jquery.min.js"></script>
+	<script src="bs/bootstrap.min.js"></script>
+	<script>
+		var years = document.getElementById('years'),
+			mouths = document.getElementById('mouths'),
+			mouIndex = mouths.selectedIndex;
+			
+		
+		var selDate = new Date(years.value,2,1);//设定日期
+		var Thisdate = new Date();//获取当前日期信息
+		years.value = Thisdate.getFullYear();//获取当前年份信息,并输出到文本框
+		mouIndex = Thisdate.getMonth();//获取当前月份索引
+		mouths[mouIndex].selected="selected";//选中月份下拉选择框
+		
+		var selChange = function(){
+			return mouths.options[mouths.selectedIndex].value;
+		}
+		
+		var mArr = []; //建立一个数组,用以存储月份
+		
+	</script>
+</html>
