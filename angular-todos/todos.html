@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		html,body{
+			margin:0;
+			padding:0;
+		}
+		.main{
+			background:#ccc;
+			margin:0 auto;
+			width:50%;
+			padding:2em;
+		}
+	</style>
+</head>
+<body ng-app="myTodos">
+	<div class="main" ng-controller="todoController">
+		<form ng-submit="add()">
+			<input type="text" ng-model="todo" placeholder="请输入您要做的事情">
+		</form>
+		<hr>
+		<span>待办事项</span>
+		<ul ng-repeat="todo in todos">
+			<li ng-click="done($index)"><input type="checkbox" ng-checked="{{todo.lock}}"/>{{todo.text}}</li>{{todo.time}}
+		</ul>
+		<hr>
+		<span>已完成</span>
+		<ul ng-repeat="done in doneTodos">
+			<li ng-click="does($index)"><input type="checkbox" ng-checked="{{done.lock}}"/>{{done.text}}</li>
+		</ul>
+		<hr>
+		<p><span>{{todos.length}}</span><a href="javascript:;" ng-click="clear()">清空</a></p>
+	</div>
+</body>
+<script src="js/angular.min.js"></script>
+<script>
+	//定义本地存储
+	var save = function(keyname,text){
+		text_str = JSON.stringify(text);
+		window.localStorage.setItem(keyname,text_str);
+	}
+	
+	var clear = function(keyname){
+		window.localStorage.removeItem(keyname);
+	}
+
+	var todos = angular.module('myTodos',[]);
+	//定义ng-app范围
+	todos.controller('todoController',function($scope){
+	//定义控制器
+		
+		// 定义待办事项存储数组
+		if(window.localStorage.getItem('todos')){
+			var todos = window.localStorage.getItem('todos');
+			$scope.todos = JSON.parse(todos);
+		}else{
+			$scope.todos = [];  
+		}
+		
+		//定义已完成事项存放数组
+		if(window.localStorage.getItem('doneTodos')){
+			var doneTodos = window.localStorage.getItem('doneTodos');
+			$scope.doneTodos = JSON.parse(doneTodos);
+		}else{
+			$scope.doneTodos = []; 
+		}
+
+		//当输入表单提交时触发函数
+		$scope.add = function(){
+			//向待办事项中添加事项   text 事项内容   lock 事件状态
+			$scope.todos.push({text:$scope.todo,lock:false,time:new Date()});
+			//表单提交后将文本输入框置空
+			$scope.todo="";
+			console.log($scope.todos);
+			save('todos',$scope.todos);
+			save('doneTodos',$scope.doneTodos);
+		}
+		
+		//定义当点击待办事项完成时触发函数
+		$scope.done = function(index){
+			//将代办事项的状态改变为选中
+			$scope.todos[index].lock = true;
+			//将选中的代办事项添加到已完成事项中
+			$scope.doneTodos.push($scope.todos.splice(index,1)[0]);
+			
+			console.log($scope.doneTodos);
+			save('todos',$scope.todos);
+			save('doneTodos',$scope.doneTodos);
+		}
+		
+		//定义当点击已完成事项返回到代办事项中
+		$scope.does = function (index){
+			//将已完成事件状态改变为未完成
+			$scope.doneTodos[index].lock = false;
+			//将该已完成事项添加到待办事项中
+			$scope.todos.push($scope.doneTodos.splice(index,1)[0]);
+			save('todos',$scope.todos);
+			save('doneTodos',$scope.doneTodos);
+		}
+		
+		$scope.clear = function(){
+			//清空所有选项
+			$scope.todos=[];
+			$scope.doneTodos = [];
+			clear('todos');
+			clear('doneTodos');
+		}
+	});
+	
+	
+</script>
+</html>
