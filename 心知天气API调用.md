@@ -67,3 +67,37 @@
    	});
    });
    ```
+
+
+
+# 使用Nodejs
+
+上代码:
+
+
+	const key = '';	// 我的秘钥
+	const userID = '' ;	// 我的ID
+	const url = 'https://api.seniverse.com/v3/weather/now.json?';	// 定义url
+	
+	const https = require('https');
+	// 获得加密模块
+	const crypto = require('crypto');
+	// 定义时间戳
+	var times = Math.floor(new Date().getTime()/1000);
+	// 将用户ID和时间戳,过期时间连接
+	var keyTimes = 'ts='+times+'&ttl=300&uid='+userID;
+	
+	console.log('keyTimes是'+keyTimes);
+	// 加密上面时间值字符串
+	var sig = crypto.createHmac('sha1',key).update('keyTimes').digest('base64');
+	
+	console.log('加密后的签名'+sig);
+	
+	// 得到最终的url
+	var myurl = url +'&location=beijing&'+keyTimes+'&key='+key;
+	// 使用https模块发送请求,得到数据
+	https.get(myurl,function(res){
+		res.on('data',function(data){
+			console.log(data.toString());
+		});
+	});
