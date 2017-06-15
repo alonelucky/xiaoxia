@@ -9,7 +9,7 @@
 	将table_name表中的数据按照作者名称倒序排列
 ####2. 分组
 
-		mysql> select author,count(*) from yable_name group by author;
+		mysql> select author,count(*) from table_name group by author;
 	将表中数据按照作者名字统计
 
 		+--------+----------+
