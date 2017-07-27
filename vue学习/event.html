@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>todo应用</title>
+</head>
+<body>
+    <div id="demo">
+        <input type="text" v-model="item" v-on:keyup.enter="submit">
+        <ul>
+            <li is="todoItem" v-for="(todo,index) in todos" v-bind:title="todo" v-on:remove="deleteTodo(index)"></li>
+        </ul>
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    let todos = [];
+</script>
+<script>
+    // 1. props 接受模板调用处传递的参数v-bind:title="todo"
+    // 2. $emit是将当前实例事件转换为模板调用处定义的事件 v-on:remove
+    Vue.component('todoItem',{
+        props:['title'],
+        template:'<li v-on:click="$emit(\'remove\')">{{title}}</li>'
+    });
+
+    let myApp = new Vue({
+        el:'#demo',
+        data:{
+            item:'',
+            todos:todos
+        },
+        methods:{
+            submit:function(e){
+                // this.item.push(todos);
+                todos.unshift(this.item);
+                this.item='';
+            },
+            deleteTodo:function(index){
+                // 删除当前条目
+                todos.splice(index,1);
+            }
+        }
+    });
+</script>
+</html>

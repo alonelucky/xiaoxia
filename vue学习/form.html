@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>Form表单操作</title>
+</head>
+<body>
+    <div id="demo">
+        <h1>双向绑定</h1>
+        <input type="text" v-model="text" value="{{text}}">
+        <input type="text" value="{{text}}" v-model="text">
+    </div>
+    <div id="demo2">
+        <h1>复选框</h1>
+        <input type="checkbox" id="checked" v-model="checked">
+        <label for="checked">{{checked}}</label><br/>
+        <h2>实例测试</h2>
+        <input type="checkbox" value="apple" v-model="checks" id="apple">
+        <label for="apple">apple</label>
+        <input type="checkbox" value="bananer" v-model="checks" id="bananer">
+        <label for="apple">bananer</label>
+        <input type="checkbox" value="origen" v-model="checks" id="origen">    
+        <label for="apple">origen</label>
+        <p>当前选中项: {{checks}}</p>
+    </div>
+    <div id="demo3">
+        <h1>单选框</h1>
+        <input type="radio" name="sex" id="nan" value="男" v-model="radio">
+        <label for="nan">男</label>
+        <input type="radio" name="sex" id="nv" value="女" v-model="radio">
+        <label for="nv">女</label>        
+        <p>当前选择: {{radio}}</p>       
+    </div>
+    <div id="demo4">
+        <h1>下拉选择</h1>
+        <select name="select" id="select" v-model="select">
+            <option value="小明" >小明</option>
+            <option value="小鸿">小鸿</option>
+            <option value="小刚">小刚</option>
+            <option value="小强">小强</option>
+            <option value="小李">小李</option>
+            <option value="小赵">小赵</option>          
+        </select>
+        <p>当前选中: {{select}}</p>
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    let todos = [];
+</script>
+<script>
+    let vm1 = new Vue({
+        el:'#demo',
+        data:{
+            text:''
+        }
+    });
+    let vm2 = new Vue({
+        el:'#demo2',
+        data:{
+            checked:false,
+            checks:['apple']
+        }
+    });
+    let vm3 = new Vue({
+        el:'#demo3',
+        data:{
+            radio:'男'
+        }
+    });
+    let vm4 = new Vue({
+        el:'#demo4',
+        data:{
+            select:'小强'
+        }
+    })
+</script>
+</html>

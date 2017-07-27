@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>Vue学习</title>
+</head>
+<body>
+    <div id="demo">
+        <ul>
+            <li v-if='taglist'>
+                显示
+            </li>
+            <li v-if='!taglist'>
+                不显示
+            </li>
+        </ul>        
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    const taglist = ['HTML','CSS','JavaScript','Nodejs','PHP','Nginx'];
+    const postlist = [
+        {
+            name:'第一篇',
+            conten:'我说内容'
+        },
+        {
+            name:'第二篇',
+            conten:'我是内容'
+        }
+    ];
+</script>
+<script>
+    let myApp = new Vue({
+        el:'#demo',
+        data:{
+            taglist:true
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>Vue学习</title>
+</head>
+<body>
+    <div id="demo">
+        <ul>
+            <!--这里调用模板  -->
+            <todo-item 
+                v-for="(item,index) in postlist"
+                v-bind:todo="item"
+                v-bind:key="item.id"
+                v-on:click="console.log(index)"
+            >
+            </todo-item>
+        </ul>        
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    const taglist = ['HTML','CSS','JavaScript','Nodejs','PHP','Nginx'];
+    const postlist = [
+        {   
+            id:1,
+            name:'第一篇',
+            content:'我说内容'
+        },
+        {
+            id:2,
+            name:'第二篇',
+            content:'我是内容'
+        }
+    ];
+</script>
+<script>
+    Vue.component('todo-item',{
+        // 接受模板调用出传入的数据
+        props:['todo'],
+        // 定义模板内容
+        template:'<li  v-on:click="$emit(\' click \')">{{todo.content}}</li>',
+        methods:{
+            
+        }
+    });
+
+    let myApp = new Vue({
+        el:'#demo',
+        data:{
+            postlist:postlist
+        },
+        methods:{
+            clickTemp:function(e){
+                console.log(e)
+            }
+        }
+    });
+</script>
+</html>
